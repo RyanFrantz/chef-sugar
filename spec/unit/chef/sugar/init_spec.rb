@@ -17,8 +17,8 @@ describe Chef::Sugar::Init do
 
   describe '#systemd?' do
     systemctl_path = '/bin/systemctl'
-    it "is true when #{systemctl_path} exists and is exectuable" do
-      allow(File).to receive(:executable?)
+    it "is true when #{systemctl_path} exists" do
+      allow(File).to receive(:exist?)
         .with(systemctl_path)
         .and_return(true)
 
@@ -26,8 +26,8 @@ describe Chef::Sugar::Init do
       expect(described_class.systemd?(node)).to be true
     end
 
-    it "is false when #{systemctl_path} does not exist and/or is not executable" do
-      allow(File).to receive(:executable?)
+    it "is false when #{systemctl_path} does not exist" do
+      allow(File).to receive(:exist?)
         .with(systemctl_path)
         .and_return(false)
 

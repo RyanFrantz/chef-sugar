@@ -25,7 +25,7 @@ class Chef
       # @return [Boolean]
       #
       def systemd?(node)
-        File.executable?('/bin/systemctl')
+        File.exist?('/bin/systemctl')
       end
 
       #
